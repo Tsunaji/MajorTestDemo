@@ -23,10 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
-/**
- * @author Vlonjat Gashi (vlonjatg)
- */
-public abstract class AppTour extends AppCompatActivity {
+public abstract class   AppTour extends AppCompatActivity {
 
     private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
     private final ArrayList<Integer> colors = new ArrayList<>();
@@ -46,14 +43,6 @@ public abstract class AppTour extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//        if (Build.VERSION.SDK_INT >= 19) {
-//            //Set status bar to semi-transparent
-//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        }
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_app_tour2);
@@ -87,62 +76,26 @@ public abstract class AppTour extends AppCompatActivity {
 
     public abstract void init(@Nullable Bundle savedInstanceState);
 
-    /**
-     * Perform action when skip button is pressed
-     */
-    public abstract void onSkipPressed();
-
-    /**
-     * Perform action when done button is pressed
-     */
-    public abstract void onDonePressed();
-
-    /**
-     * Add a slide to the intro
-     *
-     * @param fragment Fragment of the slide to be added
-     */
     public void addSlide(@NonNull Fragment fragment) {
         fragments.add(fragment);
         addBackgroundColor(Color.TRANSPARENT);
-        pagerAdapter.notifyDataSetChanged();
+        pagerAdapter.notifyDataSethanged();
     }
 
-    /**
-     * Add a slide to the intro
-     *
-     * @param fragment Fragment of the slide to be added
-     * @param color    Background color of the fragment
-     */
     public void addSlide(@NonNull Fragment fragment, @ColorInt int color) {
         fragments.add(fragment);
         addBackgroundColor(color);
         pagerAdapter.notifyDataSetChanged();
     }
 
-    /**
-     * Return slides
-     *
-     * @return Return slides
-     */
     public List<Fragment> getSlides() {
         return pagerAdapter.getFragments();
     }
 
-    /**
-     * Get which slide is currently active
-     *
-     * @return Returns the current active slide index
-     */
     public int getCurrentSlide() {
         return introViewPager.getCurrentItem();
     }
 
-    /**
-     * Set the currently selected slide
-     *
-     * @param position Item index to select
-     */
     public void setCurrentSlide(int position) {
         introViewPager.setCurrentItem(position, true);
     }
@@ -151,19 +104,10 @@ public abstract class AppTour extends AppCompatActivity {
         activeDotColor = color;
     }
 
-    /**
-     * Set the color of the inactive dot indicator
-     *
-     * @param color Color value to set
-     */
     public void setInactiveDocsColor(@ColorInt int color) {
         inactiveDocsColor = color;
     }
 
-
-    /**
-     * Show indicator dots
-     */
     public void showIndicatorDots() {
         dotsLayout.setVisibility(View.VISIBLE);
     }
